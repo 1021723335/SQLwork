@@ -30,7 +30,7 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QLineEdit" name="MnameEdit">
+  <widget class="QLineEdit" name="MIDEdit">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -140,7 +140,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>宿管ID</string>
+    <string>宿管</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -162,7 +162,7 @@
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QLineEdit" name="MIDEdit">
+  <widget class="QLineEdit" name="MnameEdit">
    <property name="geometry">
     <rect>
      <x>80</x>
@@ -191,14 +191,14 @@
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
-     <x>25</x>
+     <x>15</x>
      <y>250</y>
-     <width>41</width>
-     <height>16</height>
+     <width>51</width>
+     <height>20</height>
     </rect>
    </property>
    <property name="text">
-    <string>宿管</string>
+    <string>宿管ID</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
