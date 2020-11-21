@@ -73,6 +73,7 @@ class StudentManager(object):
         try:
             msg = sql.studentLoad("x_table")
             for i in range(len(msg)):
+                #创建每一个数据的student对象
                 s = msg[i]
                 #print(s)
                 student = Student()
