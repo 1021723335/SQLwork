@@ -77,6 +77,7 @@ def student_delete(student):
     db.close()
 
 def student_select(seachby,keyList):
+    #学生单属性查询
     db = open()
     cursor = db.cursor()
     sql1 = "select * from x_table where {} = '{}' ".format(seachby,keyList)
@@ -94,7 +95,30 @@ def student_select(seachby,keyList):
     # 关闭数据库连接
     db.close()
     return results
+def manager_select(seachby,keyList):
+    #宿管单属性查询
+    db = open()
+    cursor = db.cursor()
+    #print(seachby)
+    #print(keyList)
+    sql1 = "select * from m_table where {} = '{}' ".format(seachby,keyList)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        results = ()
+        db.rollback()  # 事务回滚
+        print('查询宿管失败', e)
+    else:
+        results = cursor.fetchall()
+        print('查询宿管成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+    return results
+
 def student_multiselect(seachby,keyList):
+    #学生多属性查询
     db = open()
     cursor = db.cursor()
     sql1 = "select * from x_table "
@@ -113,6 +137,30 @@ def student_multiselect(seachby,keyList):
     else:
         results = cursor.fetchall()
         print('查询学生成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+    return results
+def manager_multiselect(seachby,keyList):
+    #宿管多属性查询
+    db = open()
+    cursor = db.cursor()
+    sql1 = "select * from m_table "
+    for i in range(len(seachby)):
+        if i == 0:
+            sql1 = sql1 + "where {} = '{}' ".format(seachby[i],keyList[i])
+        else:
+            sql1 = sql1 + "and {} = '{}' ".format(seachby[i], keyList[i])
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        results = ()
+        db.rollback()  # 事务回滚
+        print('查询宿管失败', e)
+    else:
+        results = cursor.fetchall()
+        print('查询宿管成功', cursor.rowcount)
 
     # 关闭数据库连接
     db.close()

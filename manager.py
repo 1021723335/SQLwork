@@ -37,29 +37,36 @@ class MManager(object):
         return True
 
     def multiSearch(self, keyList):
-        result = self.MList.copy()
-        for searchBy, keyText in keyList:
-            if keyText:
-                result = self.search(searchBy, keyText, result)
+        # print(keyList)
+        searchBy = []
+        keyText = []
+        #print(keyList)
+        for searchby, keytext in keyList:
+            if keytext:
+                searchBy.append(searchby)
+                keyText.append(keytext)
+        msg = sql.manager_multiselect(searchBy, keyText)
+        #print(searchBy)
+        #print(keyText)
+        result = self.tomanager(msg)
         return result
 
-    def search(self, searchBy, keyList, searchList=None):
+    def search(self, searchBy, keyList):
+        #print(searchBy)
         result = []
-        searchList = searchList or self.MList
         if not keyList:
-            return searchList.copy()
+            msg = sql.Load('m_table')
+            result = self.tomanager(msg)
+            return result
         else:
             keyList = keyList.split()
-            if len(keyList) > 1:
-                [keyList.pop(i) if not i else None for i in keyList]
-            for manager in searchList:
-                target = str(getattr(manager, searchBy))
-                for key in keyList:
-                    key = str(key)
-                    if key in target:
-                        result.append(manager)
-                        break
+
+            for i in keyList:
+                msg = sql.manager_select(searchBy, i)
+                result = result + self.tomanager(msg)
+            # print(result)
             return result
+
     def tomanager(self,msg):
         result = []
         for i in range(len(msg)):
@@ -74,6 +81,7 @@ class MManager(object):
             manager.Mphone = m[4]
             result.append(manager)
         return result
+
     def load(self):
         MList = []
         MMID = {}

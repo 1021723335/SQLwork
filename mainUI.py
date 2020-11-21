@@ -85,7 +85,7 @@ class MainWindow(object):
         [self.managerTable.setColumnWidth(i, width[i]) for i in range(5)]
         self.searchModeM = 0  # 0不搜索 1快速搜索 2高级搜索
 
-        window.SearchBox_1.currentTextChanged['QString'].connect(self.onSearchByM)
+        window.SearchBox_3.currentTextChanged['QString'].connect(self.onSearchByM)
 
         self.onSearchByM("工号")
         self.onSearchByX("学号")
