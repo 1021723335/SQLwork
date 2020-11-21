@@ -39,8 +39,8 @@ class MainWindow(object):
         self.deleteButtonX.clicked.connect(self.onDeleteX)
         #学生表
         self.studentTable = window.studentTable
-        self.tableList = []  # Student
-        self.tableIndex = {}  # Student -> Item
+        self.tableListX = []  # Student
+        self.tableIndexX = {}  # Student -> Item
         self.studentTable.itemSelectionChanged.connect(self.onSelectStudent)
         self.studentTable.activated.connect(self.onEditX)
 
@@ -88,13 +88,13 @@ class MainWindow(object):
                                       "删除档案", "确认删除此档案?",
                                       QMessageBox.Yes | QMessageBox.No)
         if confirm == QMessageBox.Yes:
-            item = self.tableIndex[student]
+            item = self.tableIndexX[student]
             n = self.studentTable.topLevelItemCount()
             for i in range(0, n):
                 if self.studentTable.topLevelItem(i) == item:
                     self.studentTable.takeTopLevelItem(i)
-                    self.tableList.remove(student)
-                    self.tableIndex.pop(student)
+                    self.tableListX.remove(student)
+                    self.tableIndexX.pop(student)
                     break
             public.studentManager.delete(student)
 
@@ -107,8 +107,8 @@ class MainWindow(object):
             _student.copyTo(student)
             public.studentManager.add(student)
             
-            if student in self.tableIndex:
-                self.tableSet(student, self.tableIndex[student])
+            if student in self.tableIndexX:
+                self.tableSet(student, self.tableIndexX[student])
         self._editBox = XboxUI.EditBox(student, _onEditX)
         self._editBox.show()
 
@@ -134,8 +134,8 @@ class MainWindow(object):
     def tableAdd(self, student):
         item = QtWidgets.QTreeWidgetItem(self.studentTable)
         self.tableSet(student, item)
-        self.tableList.append(student)
-        self.tableIndex[student] = item
+        self.tableListX.append(student)
+        self.tableIndexX[student] = item
 
     def tableSet(self, student, item=None):
         if item:
@@ -151,15 +151,15 @@ class MainWindow(object):
 
     def tableClear(self):
         self.studentTable.clear()
-        self.tableList.clear()
-        self.tableIndex.clear()
+        self.tableListX.clear()
+        self.tableIndexX.clear()
 
     def onSelectStudent(self):
         item = self.studentTable.selectedItems()
         selected = True if item else False
         selection = None
         if selected:
-            for k, v in self.tableIndex.items():
+            for k, v in self.tableIndexX.items():
                 if v == item[0]:
                     selection = k
                     break
