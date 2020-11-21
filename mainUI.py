@@ -63,12 +63,12 @@ class MainWindow(object):
         key = self.searchEditX.text()
         key = ' '.join(key.split())
         result = public.studentManager.search(self.quickSearchBy, key)
-        self.tableShow(result)
+        self.tableShowX(result)
 
     def onSearchX(self):
         def _onSaerch(keyList):
             result = public.studentManager.multiSearch(keyList)
-            self.tableShow(result)
+            self.tableShowX(result)
         self._saerchBox = XboxUI.SearchBox(_onSaerch)
         self._saerchBox.show()
 
@@ -76,7 +76,7 @@ class MainWindow(object):
         def _onAddStudentX(_student):
             student = _student.copy()
             public.studentManager.add(student)
-            self.tableSet(student)
+            self.tableSetX(student)
         self._newBox = XboxUI.NewBox(_onAddStudentX)
         self._newBox.show()
 
@@ -108,7 +108,7 @@ class MainWindow(object):
             public.studentManager.add(student)
             
             if student in self.tableIndexX:
-                self.tableSet(student, self.tableIndexX[student])
+                self.tableSetX(student, self.tableIndexX[student])
         self._editBox = XboxUI.EditBox(student, _onEditX)
         self._editBox.show()
 
@@ -125,19 +125,19 @@ class MainWindow(object):
     def show(self):
         self.dialog.show()
 
-    def tableShow(self, studentList):
-        self.tableClear()
+    def tableShowX(self, studentList):
+        self.tableClearX()
         for student in studentList:
-            self.tableAdd(student)
+            self.tableAddX(student)
         self.onSelectStudent()
 
-    def tableAdd(self, student):
+    def tableAddX(self, student):
         item = QtWidgets.QTreeWidgetItem(self.studentTable)
-        self.tableSet(student, item)
+        self.tableSetX(student, item)
         self.tableListX.append(student)
         self.tableIndexX[student] = item
 
-    def tableSet(self, student, item=None):
+    def tableSetX(self, student, item=None):
         if item:
             item.setText(0, str(student.SID).zfill(9))
             item.setText(1, student.Sname)
@@ -147,9 +147,9 @@ class MainWindow(object):
             item.setText(5, str(student.MID).zfill(3))
             item.setText(6, student.Mname)
         elif self.searchModeX == 0:
-            self.tableAdd(student)
+            self.tableAddX(student)
 
-    def tableClear(self):
+    def tableClearX(self):
         self.studentTable.clear()
         self.tableListX.clear()
         self.tableIndexX.clear()
