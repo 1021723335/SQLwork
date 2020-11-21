@@ -53,8 +53,9 @@ class MManager(object):
             if len(keyList) > 1:
                 [keyList.pop(i) if not i else None for i in keyList]
             for manager in searchList:
-                target = getattr(manager, searchBy)
+                target = str(getattr(manager, searchBy))
                 for key in keyList:
+                    key = str(key)
                     if key in target:
                         result.append(manager)
                         break

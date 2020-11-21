@@ -144,8 +144,8 @@ class SearchBox(MBox):
         self.maleButton.setEnabled(False)
         self.famaleButton.setEnabled(False)
     def show(self):
-        self.MageEdit.setEnabled(False)
-        self.MageEdit.setClearButtonEnabled(False)
+        #self.MageEdit.setEnabled(False)
+        #self.MageEdit.setClearButtonEnabled(False)
         self.dialog.show()
 
     def onFinished(self):
