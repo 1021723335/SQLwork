@@ -1,14 +1,14 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
-from UI._Mbox import Ui_Mbox
-from manager import Manager
+from UI._Xbox import Ui_Xbox
+from Control.student import Student
 
-class MBox(object):
-    """管理员信息编辑盒 - 基类"""
+class StudentBox(object):
+    """学生信息编辑盒 - 基类"""
 
     def __init__(self):
 
         self.dialog = QtWidgets.QDialog()
-        window = Ui_Mbox()
+        window = Ui_Xbox()
         window.setupUi(self.dialog)
 
         self.dialog.setWindowFlags(QtCore.Qt.WindowCloseButtonHint)
@@ -18,10 +18,13 @@ class MBox(object):
                        QtGui.QIcon.Off)
         self.dialog.setWindowIcon(icon)
 
-        self.MIDEdit= window.MnoEdit        #工号编辑
-        self.MnameEdit = window.MnameEdit  #姓名编辑
-        self.MageEdit = window.MageEdit  #年龄编辑
-        self.MphoneEdit = window.MphonEdit   #楼管电话编辑
+        self.SIDEdit= window.SIDEdit        #学号编辑
+        self.SnameEdit = window.SnameEdit  #姓名编辑
+        self.LnoEdit = window.LnoEdit      #楼号编辑
+        self.SnoEdit = window.SnoEdit      #宿舍号编辑
+        self.MnameEdit = window.MnameEdit   #楼管姓名编辑
+        self.MIDEdit = window.MIDEdit       #楼管ID编辑
+
         self.msgLabel = window.msg          #提示信息
 
         self.okButton = window.okButton
@@ -63,21 +66,23 @@ class MBox(object):
         self.okButton.setText(ok)
         self.cancelButton.setText(cancel) if cancel is not None else None
 
-    def applyToManager(self, manager):
-        manager.MID = self.MIDEdit.text()
-        manager.Mname = self.MnameEdit.text()
-        manager.Msex = self.getSex()
-        manager.Mage = self.MageEdit.text()
-        manager.Mphone = self.MphoneEdit.text()
+    def applyToStudent(self, student):
+        student.SID = self.SIDEdit.text()
+        student.Sname = self.SnameEdit.text()
+        student.Ssex = self.getSex()
+        student.Lno = self.LnoEdit.text()
+        student.Sno = self.SnoEdit.text()
+        student.Mname = self.MnameEdit.text()
+        student.MID = self.MIDEdit.text()
 
     def onFinished(self):
         return False
 
 
-class EditBox(MBox):
-    """编辑宿管信息 - 继承MBox"""
+class EditBox(StudentBox):
+    """编辑学生信息 - 继承StudentBox"""
 
-    def __init__(self, manager, callback):
+    def __init__(self, student, callback):
         super(EditBox, self).__init__()
         self.callback = callback
 
@@ -85,32 +90,35 @@ class EditBox(MBox):
         self.setMsg("")
         self.setButton("修改")
 
-        self.MIDEdit.setText(manager.MID)
-        self.MnameEdit.setText(manager.Mname)
-        self.setSex(str(manager.Msex))
-        self.MageEdit.setText(str(manager.Mage))
-        self.MphoneEdit.setText(manager.Mphone)
+        self.SIDEdit.setText(student.SID)
+        self.SnameEdit.setText(student.Sname)
+        self.setSex(str(student.Ssex))
+        self.LnoEdit.setText(student.Lno)
+        self.SnoEdit.setText(student.Sno)
+        self.MnameEdit.setText(student.Mname)
+        self.MIDEdit.setText(student.MID)
 
-        self._manager = Manager()
-    def show(self):
-        self.MIDEdit.setEnabled(False)
-        self.MnameEdit.setEnabled(False)
-        self.MnameEdit.setClearButtonEnabled(False)
-        self.MIDEdit.setClearButtonEnabled(False)
-        self.dialog.show()
+        self._student = Student()
 
     def onFinished(self):
-        self.applyToManager(self._manager)
-        check, info = self._manager.checkInfo()
+        self.applyToStudent(self._student)
+        check, info = self._student.checkInfo()
         if check:
-            self.callback(self._manager)
+            self.callback(self._student)
         else:
             self.setMsg(info)
         return check
 
+    def show(self):
+        self.SIDEdit.setEnabled(False)
+        self.SnameEdit.setEnabled(False)
+        self.SnameEdit.setClearButtonEnabled(False)
+        self.SIDEdit.setClearButtonEnabled(False)
+        self.dialog.show()
 
-class NewBox(MBox):
-    """新建宿管档案 - 继承MBox"""
+
+class NewBox(StudentBox):
+    """新建学生档案 - 继承StudentBox"""
 
     def __init__(self, callback):
         super(NewBox, self).__init__()
@@ -120,18 +128,18 @@ class NewBox(MBox):
         self.setMsg("")
         self.setButton("新建")
 
-        self.manager = Manager()
+        self.student = Student()
 
     def onFinished(self):
-        manager = self.manager
-        self.applyToManager(manager)
-        check, info = manager.checkInfo(True)
-        self.callback(self.manager) if check else self.setMsg(info)
+        student = self.student
+        self.applyToStudent(student)
+        check, info = student.checkInfo(True)
+        self.callback(self.student) if check else self.setMsg(info)
         return check
 
 
-class SearchBox(MBox):
-    """高级搜索框 - 继承MBox"""
+class SearchBox(StudentBox):
+    """高级搜索框 - 继承StudentBox"""
 
     def __init__(self, callback):
         super(SearchBox, self).__init__()
@@ -143,17 +151,15 @@ class SearchBox(MBox):
 
         self.maleButton.setEnabled(False)
         self.famaleButton.setEnabled(False)
-    def show(self):
-        #self.MageEdit.setEnabled(False)
-        #self.MageEdit.setClearButtonEnabled(False)
-        self.dialog.show()
 
     def onFinished(self):
         keyList = [
+            ("SID", ' '.join(self.SIDEdit.text().split())),
+            ("Sname", ' '.join(self.SnameEdit.text().split())),
+            ("Lno", ' '.join(self.LnoEdit.text().split())),
+            ("Sno", ' '.join(self.SnoEdit.text().split())),
             ("MID", ' '.join(self.MIDEdit.text().split())),
             ("Mname", ' '.join(self.MnameEdit.text().split())),
-            ("Mage", ' '.join(self.MageEdit.text().split())),
-            ("Mphone", ' '.join(self.MphoneEdit.text().split())),
         ]
         self.callback(keyList)
         return True

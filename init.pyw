@@ -2,8 +2,8 @@ from mainUI import MainWindow
 import sys
 import public
 from PyQt5 import QtWidgets
-from student import StudentManager
-from manager import MManager
+from Control.student import StudentManager
+from Control.manager import MManager
 
 if __name__ == "__main__":
     argv = sys.argv

@@ -1,8 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QMessageBox
 from UI._mainUI import Ui_MainWindow
-import XboxUI
-import MboxUI
+from Control import XboxUI, MboxUI
 import public
 
 
@@ -91,13 +90,13 @@ class MainWindow(object):
         self.onSearchByX("学号")
 
     def onSearchByX(self, searchByX):
-        from student import attributeListX as attrs
+        from Control.student import attributeListX as attrs
         for attr, translate in attrs:
             if searchByX == translate:
                 self.quickSearchByX = attr
         self.onQuickSearchX()
     def onSearchByM(self, searchByM):
-        from manager import attributeListM as attrs
+        from Control.manager import attributeListM as attrs
         for attr, translate in attrs:
             if searchByM == translate:
                 self.quickSearchByM = attr
