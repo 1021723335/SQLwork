@@ -55,8 +55,7 @@ class MManager(object):
         #print(searchBy)
         result = []
         if not keyList:
-            msg = sql.Load('m_table')
-            result = self.tomanager(msg)
+            result = self.MList
             return result
         else:
             keyList = keyList.split()

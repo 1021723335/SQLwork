@@ -59,8 +59,7 @@ class StudentManager(object):
         #print(searchBy)
         result = []
         if not keyList:
-            msg = sql.Load('x_table')
-            result = self.tostudent(msg)
+            result = self.studentList
             return result
         else:
             keyList = keyList.split()
