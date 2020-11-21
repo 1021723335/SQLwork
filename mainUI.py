@@ -81,7 +81,7 @@ class MainWindow(object):
         self._newBox.show()
 
     def onDeleteX(self):
-        student = self.selection
+        student = self.selectionX
         if not student:
             return
         confirm = QMessageBox.warning(QtWidgets.QWidget(),
@@ -99,7 +99,7 @@ class MainWindow(object):
             public.studentManager.delete(student)
 
     def onEditX(self):
-        student = self.selection
+        student = self.selectionX
         if not student:
             return
         def _onEditX(_student):
@@ -165,7 +165,7 @@ class MainWindow(object):
                     break
             else:
                 selected = False
-        self.selection = selection
+        self.selectionX = selection
         self.setStudentInfo(selection)
         self.editButtonX.setEnabled(selected)
         #self.actionAdd.setEnabled(selected)
