@@ -3,6 +3,7 @@ import sys
 import public
 from PyQt5 import QtWidgets
 from student import StudentManager
+from manager import MManager
 
 if __name__ == "__main__":
     argv = sys.argv
@@ -11,6 +12,7 @@ if __name__ == "__main__":
     app.addLibraryPath(".")
 
     public.studentManager = StudentManager()
+    public.suguangManager = MManager()
 
     public.mainDialog = MainWindow()
     public.mainDialog.show()

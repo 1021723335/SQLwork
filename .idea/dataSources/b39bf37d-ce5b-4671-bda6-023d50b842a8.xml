@@ -928,7 +928,7 @@ SELECT|sys.sys_config:null
     <table id="290" parent="6" name="x_table"/>
     <column id="291" parent="288" name="MID">
       <Position>1</Position>
-      <DataType>int(3) unsigned zerofill|0s</DataType>
+      <DataType>varchar(3)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="292" parent="288" name="Mname">
@@ -941,121 +941,139 @@ SELECT|sys.sys_config:null
     </column>
     <column id="294" parent="288" name="Mage">
       <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>int|0s</DataType>
     </column>
     <column id="295" parent="288" name="Mphone">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <index id="296" parent="288" name="Mname">
+    <index id="296" parent="288" name="MID">
+      <ColNames>MID
+Mname</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="297" parent="288" name="Mname">
       <ColNames>Mname</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="297" parent="288" name="PRIMARY">
+    <key id="298" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>MID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="298" parent="289" name="Lno">
+    <column id="299" parent="289" name="Lno">
       <Position>1</Position>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(2)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="299" parent="289" name="Sno">
+    <column id="300" parent="289" name="Sno">
       <Position>2</Position>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(3)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="300" parent="289" name="L_n">
+    <column id="301" parent="289" name="L_n">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="301" parent="289" name="C_n">
+    <column id="302" parent="289" name="C_n">
       <Position>4</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="302" parent="289" name="K_n">
+    <column id="303" parent="289" name="K_n">
       <Position>5</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="303" parent="289" name="Location">
+    <column id="304" parent="289" name="Location">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <key id="304" parent="289" name="PRIMARY">
+    <index id="305" parent="289" name="Lno">
+      <ColNames>Lno</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="306" parent="289" name="Sno">
+      <ColNames>Sno</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="307" parent="289" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Lno
 Sno</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="305" parent="290" name="SID">
+    <column id="308" parent="290" name="SID">
       <Position>1</Position>
-      <DataType>int(9) unsigned zerofill|0s</DataType>
+      <DataType>varchar(9)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="306" parent="290" name="Sname">
+    <column id="309" parent="290" name="Sname">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="307" parent="290" name="Ssex">
+    <column id="310" parent="290" name="Ssex">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="308" parent="290" name="Lno">
+    <column id="311" parent="290" name="Lno">
       <Position>4</Position>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(2)|0s</DataType>
     </column>
-    <column id="309" parent="290" name="Sno">
+    <column id="312" parent="290" name="Sno">
       <Position>5</Position>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(3)|0s</DataType>
     </column>
-    <column id="310" parent="290" name="MID">
+    <column id="313" parent="290" name="MID">
       <Position>6</Position>
-      <DataType>int(3) unsigned zerofill|0s</DataType>
+      <DataType>varchar(3)|0s</DataType>
     </column>
-    <column id="311" parent="290" name="Mname">
+    <column id="314" parent="290" name="Mname">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <index id="312" parent="290" name="宿舍ID">
+    <index id="315" parent="290" name="宿舍ID">
       <ColNames>Lno
 Sno</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="313" parent="290" name="宿管ID">
+    <index id="316" parent="290" name="宿舍号">
+      <ColNames>Sno</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="317" parent="290" name="宿管">
       <ColNames>MID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="314" parent="290" name="宿管名字">
+    <index id="318" parent="290" name="宿管ID">
       <ColNames>Mname</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="315" parent="290" name="PRIMARY">
+    <key id="319" parent="290" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="316" parent="290" name="宿舍ID">
-      <ColNames>Lno
-Sno</ColNames>
+    <foreign-key id="320" parent="290" name="楼号">
+      <ColNames>Lno</ColNames>
       <RefTableName>s_table</RefTableName>
-      <RefColNames>Lno
-Sno</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
+      <RefColNames>Lno</RefColNames>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <foreign-key id="317" parent="290" name="宿管ID">
+    <foreign-key id="321" parent="290" name="宿舍号">
+      <ColNames>Sno</ColNames>
+      <RefTableName>s_table</RefTableName>
+      <RefColNames>Sno</RefColNames>
+      <OnDelete>set-null</OnDelete>
+    </foreign-key>
+    <foreign-key id="322" parent="290" name="宿管">
       <ColNames>MID</ColNames>
       <RefTableName>m_table</RefTableName>
       <RefColNames>MID</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
-    <foreign-key id="318" parent="290" name="宿管名字">
+    <foreign-key id="323" parent="290" name="宿管ID">
       <ColNames>Mname</ColNames>
       <RefTableName>m_table</RefTableName>
       <RefColNames>Mname</RefColNames>
-      <OnUpdate>cascade</OnUpdate>
       <OnDelete>set-null</OnDelete>
     </foreign-key>
   </database-model>

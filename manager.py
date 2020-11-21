@@ -19,7 +19,7 @@ class MManager(object):
 
         self.load()
 
-        self.emptyStudent = Manager()
+        self.emptyManager = Manager()
 
     def add(self, manager):
         self.MList.append(manager)
@@ -86,8 +86,8 @@ class MManager(object):
             self.MList = MList
             self.MMID = MMID
 
-        print(self.MMID)
-        print(self.MList)
+        #print(self.MMID)
+        #print(self.MList)
         return result
 
 class Manager(object):

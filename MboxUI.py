@@ -88,7 +88,7 @@ class EditBox(MBox):
         self.MIDEdit.setText(manager.MID)
         self.MnameEdit.setText(manager.Mname)
         self.setSex(str(manager.Msex))
-        self.MageEdit.setText(manager.Mage)
+        self.MageEdit.setText(str(manager.Mage))
         self.MphoneEdit.setText(manager.Mphone)
 
         self._manager = Manager()
@@ -140,8 +140,8 @@ class SearchBox(MBox):
 
     def onFinished(self):
         keyList = [
-            ("SID", ' '.join(self.MIDEdit.text().split())),
-            ("Sname", ' '.join(self.MnameEdit.text().split())),
+            ("MID", ' '.join(self.MIDEdit.text().split())),
+            ("Mname", ' '.join(self.MnameEdit.text().split())),
             ("Mage", ' '.join(self.MageEdit.text().split())),
             ("Mphone", ' '.join(self.MphoneEdit.text().split())),
         ]

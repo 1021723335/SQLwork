@@ -95,7 +95,7 @@ def checkM(MID,new):
     msg = ''
     db = open()
     cursor = db.cursor()
-    sql = "select MID from M_table where M = {}".format(MID)
+    sql = "select MID from M_table where MID = {}".format(MID)
     cursor.execute(sql)
     results1 = cursor.fetchall()
     if results1 != () and new:
@@ -108,7 +108,7 @@ def manager_add(manager):
     #增加宿管
     db = open()
     cursor = db.cursor()
-    sql1 = """insert into m_table(MID,Mname,Msex,Mage,Mphoone)
+    sql1 = """insert into m_table(MID,Mname,Msex,Mage,Mphone)
                 values ("{}","{}",{},"{}","{}")""".format(manager.MID,manager.Mname,manager.Msex,manager.Mage,manager.Mphone)
     try:
         # 执行SQL语句
