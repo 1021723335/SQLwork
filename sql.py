@@ -76,6 +76,24 @@ def student_delete(student):
     # 关闭数据库连接
     db.close()
 
+def student_select(seachby,keyList):
+    db = open()
+    cursor = db.cursor()
+    sql1 = "select * from x_table where {} = '{}' ".format(seachby,keyList)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        db.rollback()  # 事务回滚
+        print('查询学生失败', e)
+    else:
+        results = cursor.fetchall()
+        print('查询学生成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+    return results
+
 def Load(table):
     #加载table表的全部信息
     db = open()

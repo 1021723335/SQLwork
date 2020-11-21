@@ -50,22 +50,20 @@ class StudentManager(object):
 
     def search(self, searchBy, keyList, searchList=None):
         #print(searchBy)
-        #print(keyList)
         result = []
         searchList = searchList or self.studentList
         if not keyList:
             return searchList.copy()
         else:
             keyList = keyList.split()
-            if len(keyList) > 1:
-                [keyList.pop(i) if not i else None for i in keyList]
+
             for student in searchList:
                 target = getattr(student, searchBy)
                 for key in keyList:
                     if key in target:
                         result.append(student)
                         break
-            print(result)
+            #print(result)
             return result
     def tostudent(self,msg):
         result = []
