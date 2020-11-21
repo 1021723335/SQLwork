@@ -22,7 +22,15 @@ class MainWindow(object):
         self.SnoLabel = window.Sno
         self.MnameLabel = window.Mname
         self.MIDLabel = window.MID
-        #高级搜索
+
+        # 宿管label
+        self.MIDLabel_1 = window.Mno
+        self.MnameLabel_1 = window.Mname
+        self.MsexLabel = window.MSex
+        self.MageLabel = window.Mage
+        self.MphoneLabel = window.MPhone
+
+        #高级搜索学生
         self.searchButtonX = window.SearchButton_1
         self.searchButtonX.clicked.connect(self.onSearchX)
         #新建学生档案
