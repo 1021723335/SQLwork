@@ -168,6 +168,4 @@ class MainWindow(object):
         self.selectionX = selection
         self.setStudentInfo(selection)
         self.editButtonX.setEnabled(selected)
-        #self.actionAdd.setEnabled(selected)
         self.deleteButtonX.setEnabled(selected)
-        #self.actionDelete.setEnabled(selected)
