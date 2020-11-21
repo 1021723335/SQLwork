@@ -104,13 +104,10 @@ class MainWindow(object):
         if not student:
             return
         def _onEditX(_student):
-            if _student.SID != student.SID:
-                public.studentManager.delete(student)
-                _student.copyTo(student)
-                public.studentManager.add(student)
-            else:
-                _student.copyTo(student)
-                public.studentManager.edit(student)
+            public.studentManager.delete(student)
+            _student.copyTo(student)
+            public.studentManager.add(student)
+            
             if student in self.tableIndex:
                 self.tableSet(student, self.tableIndex[student])
         self._editBox = XboxUI.EditBox(student, _onEditX)

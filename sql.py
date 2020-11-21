@@ -40,7 +40,7 @@ def student_add(student):
     db = open()
     cursor = db.cursor()
     sql1 = """insert into x_table(SID,Sname,Ssex,Lno,Sno,MID,Mname)
-                values ({},"{}",{},{},{},{},"{}")""".format(student.SID,student.Sname,student.Ssex,student.Lno,student.Sno,student.MID,student.Mname)
+                values ("{}","{}",{},"{}","{}","{}","{}")""".format(student.SID,student.Sname,student.Ssex,student.Lno,student.Sno,student.MID,student.Mname)
     sql2 ="update s_table set C_n = C_n-1,L_n = L_n+1 where Lno = {} and Sno = {}".format(student.Lno,student.Sno)
 
     try:
@@ -57,7 +57,7 @@ def student_add(student):
     # 关闭数据库连接
     db.close()
 
-def student_delete(student,flag):
+def student_delete(student):
     db = open()
     cursor = db.cursor()
     sql1 = "delete from x_table where SID = {}".format(student.SID)
