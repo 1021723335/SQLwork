@@ -42,27 +42,32 @@ class StudentManager(object):
 
     def multiSearch(self, keyList):
         #print(keyList)
-        result = self.studentList.copy()
-        for searchBy, keyText in keyList:
-            if keyText:
-                result = self.search(searchBy, keyText, result)
+        searchBy = []
+        keyText = []
+        print(keyList)
+        for searchby, keytext in keyList:
+            if keytext:
+                searchBy.append(searchby)
+                keyText.append(keytext)
+        msg = sql.student_multiselect(searchBy,keyText)
+        print(searchBy)
+        print(keyText)
+        result = self.tostudent(msg)
         return result
 
-    def search(self, searchBy, keyList, searchList=None):
+    def search(self, searchBy, keyList):
         #print(searchBy)
         result = []
-        searchList = searchList or self.studentList
         if not keyList:
-            return searchList.copy()
+            msg = sql.Load('x_table')
+            result = self.tostudent(msg)
+            return result
         else:
             keyList = keyList.split()
 
-            for student in searchList:
-                target = getattr(student, searchBy)
-                for key in keyList:
-                    if key in target:
-                        result.append(student)
-                        break
+            for i in keyList:
+                msg = sql.student_select(searchBy,i)
+                result = result + self.tostudent(msg)
             #print(result)
             return result
     def tostudent(self,msg):

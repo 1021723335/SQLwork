@@ -84,6 +84,30 @@ def student_select(seachby,keyList):
         # 执行SQL语句
         cursor.execute(sql1)
     except Exception as e:
+        results = ()
+        db.rollback()  # 事务回滚
+        print('查询学生失败', e)
+    else:
+        results = cursor.fetchall()
+        print('查询学生成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+    return results
+def student_multiselect(seachby,keyList):
+    db = open()
+    cursor = db.cursor()
+    sql1 = "select * from x_table "
+    for i in range(len(seachby)):
+        if i == 0:
+            sql1 = sql1 + "where {} = '{}' ".format(seachby[i],keyList[i])
+        else:
+            sql1 = sql1 + "and {} = '{}' ".format(seachby[i], keyList[i])
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        results = ()
         db.rollback()  # 事务回滚
         print('查询学生失败', e)
     else:
