@@ -41,6 +41,7 @@ class StudentManager(object):
         return True
 
     def multiSearch(self, keyList):
+        #print(keyList)
         result = self.studentList.copy()
         for searchBy, keyText in keyList:
             if keyText:
@@ -48,6 +49,8 @@ class StudentManager(object):
         return result
 
     def search(self, searchBy, keyList, searchList=None):
+        #print(searchBy)
+        #print(keyList)
         result = []
         searchList = searchList or self.studentList
         if not keyList:
@@ -62,25 +65,34 @@ class StudentManager(object):
                     if key in target:
                         result.append(student)
                         break
+            print(result)
             return result
+    def tostudent(self,msg):
+        result = []
+        for i in range(len(msg)):
+            # 创建每一个数据的student对象
+            s = msg[i]
+            # print(s)
+            student = Student()
+            student.SID = s[0]
+            student.Sname = s[1]
+            student.Ssex = s[2]
+            student.Lno = s[3]
+            student.Sno = s[4]
+            student.MID = s[5]
+            student.Mname = s[6]
+            result.append(student)
+        return result
 
     def load(self):
         studentList = []
         studentSID = {}
         try:
             msg = sql.Load("x_table")
-            for i in range(len(msg)):
+            result = self.tostudent(msg)
+            for student in result:
+                print(student)
                 #创建每一个数据的student对象
-                s = msg[i]
-                #print(s)
-                student = Student()
-                student.SID = s[0]
-                student.Sname = s[1]
-                student.Ssex = s[2]
-                student.Lno = s[3]
-                student.Sno = s[4]
-                student.MID = s[5]
-                student.Mname = s[6]
                 studentList.append(student)
                 studentSID[student.SID] = student
             result = True
