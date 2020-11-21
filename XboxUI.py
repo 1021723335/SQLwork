@@ -109,6 +109,13 @@ class EditBox(StudentBox):
             self.setMsg(info)
         return check
 
+    def show(self):
+        self.SIDEdit.setEnabled(False)
+        self.SnameEdit.setEnabled(False)
+        self.SnameEdit.setClearButtonEnabled(False)
+        self.SIDEdit.setClearButtonEnabled(False)
+        self.dialog.show()
+
 
 class NewBox(StudentBox):
     """新建学生档案 - 继承StudentBox"""

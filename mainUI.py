@@ -196,10 +196,13 @@ class MainWindow(object):
             return
 
         def _onEditM(_manager):
-            public.suguangManager.delete(manager)
-            _manager.copyTo(manager)
-            public.suguangManager.add(manager)
-
+            if _manager.MID != manager.MID:
+                public.suguangManager.delete(manager)
+                _manager.copyTo(manager)
+                public.suguangManager.add(manager)
+            else:
+                _manager.copyTo(manager)
+                public.suguangManager.edit(manager)
             if manager in self.tableIndexM:
                 self.tableSetM(manager, self.tableIndexM[manager])
 

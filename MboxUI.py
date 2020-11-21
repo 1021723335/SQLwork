@@ -92,6 +92,12 @@ class EditBox(MBox):
         self.MphoneEdit.setText(manager.Mphone)
 
         self._manager = Manager()
+    def show(self):
+        self.MIDEdit.setEnabled(False)
+        self.MnameEdit.setEnabled(False)
+        self.MnameEdit.setClearButtonEnabled(False)
+        self.MIDEdit.setClearButtonEnabled(False)
+        self.dialog.show()
 
     def onFinished(self):
         self.applyToManager(self._manager)

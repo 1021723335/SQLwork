@@ -27,9 +27,7 @@ class MManager(object):
         sql.manager_add(manager)
 
     def edit(self, manager):
-        self.MMID.pop(manager.MID)
-        self.MList.remove(manager)
-        sql.manager_delete(manager)
+        sql.manager_edit(manager)
         return True
 
     def delete(self, manager):
