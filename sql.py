@@ -89,4 +89,19 @@ def studentLoad(table):
     db.close()
     return results
 
+def checkM(MID,new):
+    #检查宿管正确性
+    flag = True
+    msg = ''
+    db = open()
+    cursor = db.cursor()
+    sql = "select MID from M_table where M = {}".format(MID)
+    cursor.execute(sql)
+    results1 = cursor.fetchall()
+    if results1 != () and new:
+        msg += '已有该宿管'
+        flag =False
+    db.close()
+    return (flag,msg)
+
 
