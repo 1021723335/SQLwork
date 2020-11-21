@@ -104,4 +104,40 @@ def checkM(MID,new):
     db.close()
     return (flag,msg)
 
+def manager_add(manager):
+    #增加宿管
+    db = open()
+    cursor = db.cursor()
+    sql1 = """insert into m_table(MID,Mname,Msex,Mage,Mphoone)
+                values ("{}","{}",{},"{}","{}")""".format(manager.MID,manager.Mname,manager.Msex,manager.Mage,manager.Mphone)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        db.rollback()  # 事务回滚
+        print('增加宿管失败', e)
+    else:
+        db.commit()  # 事务提交
+        print('增加宿管成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+
+def manager_delete(manager):
+    db = open()
+    cursor = db.cursor()
+    sql1 = "delete from m_table where MID = {}".format(manager.MID)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        db.rollback()  # 事务回滚
+        print('删除宿管失败', e)
+    else:
+        db.commit()  # 事务提交
+        print('删除宿管成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+
 
