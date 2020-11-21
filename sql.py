@@ -122,6 +122,23 @@ def manager_add(manager):
 
     # 关闭数据库连接
     db.close()
+def manager_edit(manager):
+    #更改宿管
+    db = open()
+    cursor = db.cursor()
+    sql1 = """update m_table set Mname = "{}",Msex= {},Mage = {},Mphone = "{}" where MID = "{}" """.format(manager.Mname,manager.Msex,manager.Mage,manager.Mphone,manager.MID)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        db.rollback()  # 事务回滚
+        print('更改宿管失败', e)
+    else:
+        db.commit()  # 事务提交
+        print('更改宿管成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
 
 def manager_delete(manager):
     db = open()
