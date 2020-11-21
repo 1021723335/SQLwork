@@ -14,14 +14,14 @@ class MainWindow(object):
         window = Ui_MainWindow()
         window.setupUi(self.dialog)
         self.dialog.setWindowFlags(QtCore.Qt.WindowCloseButtonHint)
-
+        #学生label
         self.SIDLabel = window.SID
         self.SnameLabel = window.Sname
         self.SsexLabel = window.Ssex
-        self.LnoLable = window.Lno
-        self.SnoLable = window.Sno
-        self.MnameLable = window.Mname
-        self.MIDLable = window.MID
+        self.LnoLabel = window.Lno
+        self.SnoLabel = window.Sno
+        self.MnameLabel = window.Mname
+        self.MIDLabel = window.MID
         #高级搜索
         self.searchButtonX = window.SearchButton_1
         self.searchButtonX.clicked.connect(self.onSearchX)
@@ -117,10 +117,10 @@ class MainWindow(object):
         self.SIDLabel.setText(student.SID)
         self.SnameLabel.setText(student.Sname)
         self.SsexLabel.setText(student.getSex())
-        self.LnoLable.setText(str(student.Lno))
-        self.SnoLable.setText(str(student.Sno))
-        self.MIDLable.setText(student.MID)
-        self.MnameLable.setText(student.Mname)
+        self.LnoLabel.setText(str(student.Lno))
+        self.SnoLabel.setText(str(student.Sno))
+        self.MIDLabel.setText(student.MID)
+        self.MnameLabel.setText(student.Mname)
 
     def show(self):
         self.dialog.show()
