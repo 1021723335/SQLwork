@@ -76,7 +76,7 @@ def student_delete(student):
     # 关闭数据库连接
     db.close()
 
-def studentLoad(table):
+def Load(table):
     #加载table表的全部信息
     db = open()
     cursor = db.cursor()

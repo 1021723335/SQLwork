@@ -68,7 +68,7 @@ class StudentManager(object):
         studentList = []
         studentSID = {}
         try:
-            msg = sql.studentLoad("x_table")
+            msg = sql.Load("x_table")
             for i in range(len(msg)):
                 #创建每一个数据的student对象
                 s = msg[i]
