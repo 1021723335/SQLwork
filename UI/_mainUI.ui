@@ -1336,17 +1336,17 @@ background : rgb(237, 255, 254);
        </column>
        <column>
         <property name="text">
-         <string>新建列</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
          <string>姓名</string>
         </property>
        </column>
        <column>
         <property name="text">
          <string>性别</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>年龄</string>
         </property>
        </column>
        <column>

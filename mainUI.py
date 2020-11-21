@@ -1,6 +1,5 @@
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QMessageBox
-from PyQt5.QtWidgets import QFileDialog
 from UI._mainUI import Ui_MainWindow
 import XboxUI
 import public
@@ -24,20 +23,20 @@ class MainWindow(object):
         self.MnameLable = window.Mname
         self.MIDLable = window.MID
         #高级搜索
-        self.searchButton = window.SearchButton_1
-        self.searchButton.clicked.connect(self.onSearchX)
+        self.searchButtonX = window.SearchButton_1
+        self.searchButtonX.clicked.connect(self.onSearchX)
         #新建学生档案
-        self.actionAdd = window.actionEdit_1
-        self.actionAdd.clicked.connect(self.onAddStudentX)
+        self.actionAddX = window.actionEdit_1
+        self.actionAddX.clicked.connect(self.onAddStudentX)
         # "快速检索信息, 使用空格分隔多个条件"
-        self.searchEdit = window.SearchEdit_1
-        self.searchEdit.textChanged['QString'].connect(self.onQuickSearchX)
+        self.searchEditX = window.SearchEdit_1
+        self.searchEditX.textChanged['QString'].connect(self.onQuickSearchX)
         #修改学生信息
-        self.editButton = window.editButton_1
-        self.editButton.clicked.connect(self.onEditX)
+        self.editButtonX = window.editButton_1
+        self.editButtonX.clicked.connect(self.onEditX)
         # 删除学生信息
-        self.deleteButton = window.DeleteButton_1
-        self.deleteButton.clicked.connect(self.onDeleteX)
+        self.deleteButtonX = window.DeleteButton_1
+        self.deleteButtonX.clicked.connect(self.onDeleteX)
         #学生表
         self.studentTable = window.studentTable
         self.tableList = []  # Student
@@ -61,7 +60,7 @@ class MainWindow(object):
         self.onQuickSearchX()
 
     def onQuickSearchX(self):
-        key = self.searchEdit.text()
+        key = self.searchEditX.text()
         key = ' '.join(key.split())
         result = public.studentManager.search(self.quickSearchBy, key)
         self.tableShow(result)
@@ -168,7 +167,7 @@ class MainWindow(object):
                 selected = False
         self.selection = selection
         self.setStudentInfo(selection)
-        self.editButton.setEnabled(selected)
+        self.editButtonX.setEnabled(selected)
         #self.actionAdd.setEnabled(selected)
-        self.deleteButton.setEnabled(selected)
+        self.deleteButtonX.setEnabled(selected)
         #self.actionDelete.setEnabled(selected)
