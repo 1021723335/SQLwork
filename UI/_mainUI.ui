@@ -61,7 +61,7 @@
      <enum>QTabWidget::North</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="X_table">
      <property name="statusTip">
@@ -1403,6 +1403,11 @@ background : rgb(237, 255, 254);
        <item>
         <property name="text">
          <string>姓名</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>年龄</string>
         </property>
        </item>
        <item>
