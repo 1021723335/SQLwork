@@ -61,7 +61,7 @@
      <enum>QTabWidget::North</enum>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="X_table">
      <property name="statusTip">
@@ -726,17 +726,17 @@ background : rgb(237, 255, 254);
        </column>
        <column>
         <property name="text">
-         <string>可容纳人数</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
          <string>入住人数</string>
         </property>
        </column>
        <column>
         <property name="text">
          <string>剩余空位</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>可容纳人数</string>
         </property>
        </column>
        <column>
