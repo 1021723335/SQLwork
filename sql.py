@@ -95,27 +95,6 @@ def student_select(seachby,keyList):
     # 关闭数据库连接
     db.close()
     return results
-def manager_select(seachby,keyList):
-    #宿管单属性查询
-    db = open()
-    cursor = db.cursor()
-    #print(seachby)
-    #print(keyList)
-    sql1 = "select * from m_table where {} = '{}' ".format(seachby,keyList)
-    try:
-        # 执行SQL语句
-        cursor.execute(sql1)
-    except Exception as e:
-        results = ()
-        db.rollback()  # 事务回滚
-        print('查询宿管失败', e)
-    else:
-        results = cursor.fetchall()
-        print('查询宿管成功', cursor.rowcount)
-
-    # 关闭数据库连接
-    db.close()
-    return results
 
 def student_multiselect(seachby,keyList):
     #学生多属性查询
@@ -141,30 +120,7 @@ def student_multiselect(seachby,keyList):
     # 关闭数据库连接
     db.close()
     return results
-def manager_multiselect(seachby,keyList):
-    #宿管多属性查询
-    db = open()
-    cursor = db.cursor()
-    sql1 = "select * from m_table "
-    for i in range(len(seachby)):
-        if i == 0:
-            sql1 = sql1 + "where {} = '{}' ".format(seachby[i],keyList[i])
-        else:
-            sql1 = sql1 + "and {} = '{}' ".format(seachby[i], keyList[i])
-    try:
-        # 执行SQL语句
-        cursor.execute(sql1)
-    except Exception as e:
-        results = ()
-        db.rollback()  # 事务回滚
-        print('查询宿管失败', e)
-    else:
-        results = cursor.fetchall()
-        print('查询宿管成功', cursor.rowcount)
 
-    # 关闭数据库连接
-    db.close()
-    return results
 
 def Load(table):
     #加载table表的全部信息
@@ -246,5 +202,64 @@ def manager_delete(manager):
 
     # 关闭数据库连接
     db.close()
+def manager_select(seachby,keyList):
+    #宿管单属性查询
+    db = open()
+    cursor = db.cursor()
+    #print(seachby)
+    #print(keyList)
+    sql1 = "select * from m_table where {} = '{}' ".format(seachby,keyList)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        results = ()
+        db.rollback()  # 事务回滚
+        print('查询宿管失败', e)
+    else:
+        results = cursor.fetchall()
+        print('查询宿管成功', cursor.rowcount)
 
+    # 关闭数据库连接
+    db.close()
+    return results
+def manager_multiselect(seachby,keyList):
+    #宿管多属性查询
+    db = open()
+    cursor = db.cursor()
+    sql1 = "select * from m_table "
+    for i in range(len(seachby)):
+        if i == 0:
+            sql1 = sql1 + "where {} = '{}' ".format(seachby[i],keyList[i])
+        else:
+            sql1 = sql1 + "and {} = '{}' ".format(seachby[i], keyList[i])
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        results = ()
+        db.rollback()  # 事务回滚
+        print('查询宿管失败', e)
+    else:
+        results = cursor.fetchall()
+        print('查询宿管成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+    return results
+
+def checkS(Lno,Sno,new):
+    #检查宿舍正确性
+    flag = True
+    msg = ''
+    db = open()
+    cursor = db.cursor()
+    sql1 = "select C_n from S_table where Lno = {} and Sno = {}".format(Lno,Sno)
+    cursor.execute(sql1)
+    results1 = cursor.fetchall()
+    if results1 != () and new:
+        msg += "已有该宿舍、"
+        flag = False
+    db.close()
+    return (flag,msg)
 
