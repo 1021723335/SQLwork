@@ -1,6 +1,3 @@
-import os
-import public
-import pickle
 import sql
 
 #学生属性集
