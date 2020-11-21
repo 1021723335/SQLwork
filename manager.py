@@ -60,22 +60,27 @@ class MManager(object):
                         result.append(manager)
                         break
             return result
-
+    def tomanager(self,msg):
+        result = []
+        for i in range(len(msg)):
+            # 创建每一个数据的manager对象
+            m = msg[i]
+            # print(s)
+            manager = Manager()
+            manager.MID = m[0]
+            manager.Mname = m[1]
+            manager.Msex = m[2]
+            manager.Mage = m[3]
+            manager.Mphone = m[4]
+            result.append(manager)
+        return result
     def load(self):
         MList = []
         MMID = {}
         try:
             msg = sql.Load("m_table")
-            for i in range(len(msg)):
-                #创建每一个数据的manager对象
-                m = msg[i]
-                #print(s)
-                manager = Manager()
-                manager.MID = m[0]
-                manager.Mname = m[1]
-                manager.Msex = m[2]
-                manager.Mage = m[3]
-                manager.Mphone = m[4]
+            result = self.tomanager(msg)
+            for manager in result:
                 MList.append(manager)
                 MMID[manager.MID] = manager
             result = True
