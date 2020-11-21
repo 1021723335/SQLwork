@@ -91,7 +91,7 @@ class StudentManager(object):
             msg = sql.Load("x_table")
             result = self.tostudent(msg)
             for student in result:
-                print(student)
+                #print(student)
                 #创建每一个数据的student对象
                 studentList.append(student)
                 studentSID[student.SID] = student
