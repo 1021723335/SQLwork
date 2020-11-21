@@ -1407,16 +1407,6 @@ background : rgb(237, 255, 254);
        </item>
        <item>
         <property name="text">
-         <string>性别</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>年龄</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
          <string>联系方式</string>
         </property>
        </item>
