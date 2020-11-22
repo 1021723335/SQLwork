@@ -254,11 +254,14 @@ def checkS(Lno,Sno,new):
     msg = ''
     db = open()
     cursor = db.cursor()
-    sql1 = "select C_n from S_table where Lno = {} and Sno = {}".format(Lno,Sno)
+    sql1 = "select C_n,L_n,K_n from S_table where Lno = {} and Sno = {}".format(Lno,Sno)
     cursor.execute(sql1)
     results1 = cursor.fetchall()
     if results1 != () and new:
         msg += "已有该宿舍、"
+        flag = False
+    if results1[0][0] + results1[0][1] != results1[0][2]:
+        msg += "人数不对、"
         flag = False
     db.close()
     return (flag,msg)
@@ -267,7 +270,7 @@ def sushe_add(sushe):
     #增加宿舍
     db = open()
     cursor = db.cursor()
-    sql1 = """insert into m_table(Lno,Sno,L_n,C_n,K_n,Location)
+    sql1 = """insert into s_table(Lno,Sno,L_n,C_n,K_n,Location)
                 values ({},{},{},{},{},{})""".format(sushe.Lno,sushe.Sno,sushe.L_n,sushe.C_n,sushe.K_n,sushe.Location)
     try:
         # 执行SQL语句
@@ -282,3 +285,20 @@ def sushe_add(sushe):
     # 关闭数据库连接
     db.close()
 
+def sushe_edit(sushe):
+    #更改宿舍
+    db = open()
+    cursor = db.cursor()
+    sql1 = """update s_table set L_n = {},S_n = {},C_n = {},Location = {} where Lno = {} and Sno = {} """.format(sushe.L_n,sushe.C_n,sushe.K_n,sushe.Location,sushe.Lno,sushe.Sno)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        db.rollback()  # 事务回滚
+        print('更改宿舍失败', e)
+    else:
+        db.commit()  # 事务提交
+        print('更改宿舍成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()

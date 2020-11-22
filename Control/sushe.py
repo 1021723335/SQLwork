@@ -27,8 +27,8 @@ class SusheManager(object):
         self.SusheList[sushe.Lno+sushe.Sno] = sushe
         sql.sushe_add(sushe)
 
-    def edit(self, manager):
-        sql.manager_edit(manager)
+    def edit(self, sushe):
+        sql.sushe_edit(sushe)
         return True
 
     def delete(self, manager):
