@@ -302,3 +302,20 @@ def sushe_edit(sushe):
 
     # 关闭数据库连接
     db.close()
+
+def sushe_delete(sushe):
+    db = open()
+    cursor = db.cursor()
+    sql1 = "delete from s_table where Lno = {} and Sno={}".format(sushe.Lno,sushe.Sno)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        db.rollback()  # 事务回滚
+        print('删除宿舍失败', e)
+    else:
+        db.commit()  # 事务提交
+        print('删除宿舍成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()

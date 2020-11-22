@@ -31,10 +31,10 @@ class SusheManager(object):
         sql.sushe_edit(sushe)
         return True
 
-    def delete(self, manager):
-        self.MMID.pop(manager.MID)
-        self.MList.remove(manager)
-        sql.manager_delete(manager)
+    def delete(self, sushe):
+        self.SusheID.pop(sushe.Lno+sushe.Sno)
+        self.SusheList.remove(sushe)
+        sql.sushe_delete(sushe)
         return True
 
     def multiSearch(self, keyList):
