@@ -5,13 +5,13 @@ def open():
     db = pymysql.connect("localhost", "root", "Yzf123456", "sushe")
     return db
 
-def checkX(SID,Lno,Sno,MID,new):
+def checkX(SID,Lno,Sno,MID,Mname,new):
     #检查学生正确性
     flag = True
     msg = ''
     db = open()
     cursor = db.cursor()
-    sql1 = "select MID from M_table where MID = {}".format(MID)
+    sql1 = "select MID,Mname from M_table where MID = {}".format(MID)
     sql2 = "select SID from X_table where SID = {}".format(SID)
     sql3 = "select C_n from S_table where Lno = {} and Sno = {}".format(Lno,Sno)
     cursor.execute(sql1)
@@ -23,6 +23,9 @@ def checkX(SID,Lno,Sno,MID,new):
     if results1 == ():
         msg += '没有该宿管、'
         flag =False
+    elif results1[0][1] != Mname:
+        msg += '宿管名字错误、'
+        flag = False
     if results3 == ():
         msg += "没有该宿舍、"
         flag = False
@@ -256,12 +259,14 @@ def checkS(Lno,Sno,new):
     sql1 = "select C_n,L_n,K_n from S_table where Lno = {} and Sno = {}".format(Lno,Sno)
     cursor.execute(sql1)
     results1 = cursor.fetchall()
+    print(results1)
     if results1 != () and new:
         msg += "已有该宿舍、"
         flag = False
-    if results1[0][0] + results1[0][1] != results1[0][2]:
-        msg += "人数不对、"
-        flag = False
+    if not new:
+        if results1[0][0] + results1[0][1] != results1[0][2]:
+            msg += "人数不对、"
+            flag = False
     db.close()
     return (flag,msg)
 
@@ -270,7 +275,7 @@ def sushe_add(sushe):
     db = open()
     cursor = db.cursor()
     sql1 = """insert into s_table(Lno,Sno,L_n,C_n,K_n,Location)
-                values ({},{},{},{},{},{})""".format(sushe.Lno,sushe.Sno,sushe.L_n,sushe.C_n,sushe.K_n,sushe.Location)
+                values ({},{},{},{},{},"{}")""".format(sushe.Lno,sushe.Sno,sushe.L_n,sushe.C_n,sushe.K_n,sushe.Location)
     try:
         # 执行SQL语句
         cursor.execute(sql1)

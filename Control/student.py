@@ -141,7 +141,7 @@ class Student(object):
             if not getattr(self, attr):
                 return (False, "%s不能为空" % text)
         # 重复性检测
-        check = sql.checkX(self.SID,self.Lno,self.Sno,self.MID,new)
+        check = sql.checkX(self.SID,self.Lno,self.Sno,self.MID,self.Mname,new)
         if check[0] ==0:
             return check
 
