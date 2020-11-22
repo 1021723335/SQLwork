@@ -263,3 +263,22 @@ def checkS(Lno,Sno,new):
     db.close()
     return (flag,msg)
 
+def sushe_add(sushe):
+    #增加宿舍
+    db = open()
+    cursor = db.cursor()
+    sql1 = """insert into m_table(Lno,Sno,L_n,C_n,K_n,Location)
+                values ({},{},{},{},{},{})""".format(sushe.Lno,sushe.Sno,sushe.L_n,sushe.C_n,sushe.K_n,sushe.Location)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        db.rollback()  # 事务回滚
+        print('增加宿舍失败', e)
+    else:
+        db.commit()  # 事务提交
+        print('增加宿舍成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+

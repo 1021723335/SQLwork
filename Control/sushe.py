@@ -16,16 +16,16 @@ class SusheManager(object):
         # 用于存储所有宿管对象
         self.SusheList = []
         # 工号 -> 宿管对象
-        self.SusheMID = {}
+        self.SusheID = {}
 
         self.load()
 
         self.emptySushe = Sushe()
 
-    def add(self, manager):
-        self.MList.append(manager)
-        self.MMID[manager.MID] = manager
-        sql.manager_add(manager)
+    def add(self, sushe):
+        self.SusheList.append(sushe)
+        self.SusheList[sushe.Lno+sushe.Sno] = sushe
+        sql.sushe_add(sushe)
 
     def edit(self, manager):
         sql.manager_edit(manager)
@@ -132,7 +132,7 @@ class Sushe(object):
             if not getattr(self, attr):
                 return (False, "%s不能为空" % text)
         # 重复性检测
-        check = sql.checkS(self.lno,self.Sno,new)
+        check = sql.checkS(self.Lno,self.Sno,new)
         if check[0] ==0:
             return check
 
