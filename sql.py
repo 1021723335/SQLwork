@@ -103,9 +103,9 @@ def student_multiselect(seachby,keyList):
     sql1 = "select * from x_table "
     for i in range(len(seachby)):
         if i == 0:
-            sql1 = sql1 + "where {} = '{}' ".format(seachby[i],keyList[i])
+            sql1 = sql1 + "where {} REGEXP '{}' ".format(seachby[i],keyList[i])
         else:
-            sql1 = sql1 + "and {} = '{}' ".format(seachby[i], keyList[i])
+            sql1 = sql1 + "and {} REGEXP '{}' ".format(seachby[i], keyList[i])
     try:
         # 执行SQL语句
         cursor.execute(sql1)
@@ -229,9 +229,9 @@ def manager_multiselect(seachby,keyList):
     sql1 = "select * from m_table "
     for i in range(len(seachby)):
         if i == 0:
-            sql1 = sql1 + "where {} = '{}' ".format(seachby[i],keyList[i])
+            sql1 = sql1 + "where {} REGEXP '{}' ".format(seachby[i],keyList[i])
         else:
-            sql1 = sql1 + "and {} = '{}' ".format(seachby[i], keyList[i])
+            sql1 = sql1 + "and {} REGEXP '{}' ".format(seachby[i], keyList[i])
     try:
         # 执行SQL语句
         cursor.execute(sql1)
@@ -326,9 +326,9 @@ def sushe_multiselect(seachby,keyList):
     sql1 = "select * from s_table "
     for i in range(len(seachby)):
         if i == 0:
-            sql1 = sql1 + "where {} = '{}' ".format(seachby[i],keyList[i])
+            sql1 = sql1 + "where {} REGEXP '{}' ".format(seachby[i],keyList[i])
         else:
-            sql1 = sql1 + "and {} = '{}' ".format(seachby[i], keyList[i])
+            sql1 = sql1 + "and {} REGEXP '{}' ".format(seachby[i], keyList[i])
     try:
         # 执行SQL语句
         cursor.execute(sql1)
