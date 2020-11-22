@@ -80,7 +80,7 @@ def student_select(seachby,keyList):
     #学生单属性查询
     db = open()
     cursor = db.cursor()
-    sql1 = "select * from x_table where {} = '{}' ".format(seachby,keyList)
+    sql1 = "select * from x_table where {} REGEXP '{}' ".format(seachby,keyList)
     try:
         # 执行SQL语句
         cursor.execute(sql1)
@@ -206,9 +206,8 @@ def manager_select(seachby,keyList):
     #宿管单属性查询
     db = open()
     cursor = db.cursor()
-    #print(seachby)
-    #print(keyList)
-    sql1 = "select * from m_table where {} = '{}' ".format(seachby,keyList)
+    sql1 = "select * from m_table where {} REGEXP '{}' ".format(seachby,keyList)
+    print(sql1)
     try:
         # 执行SQL语句
         cursor.execute(sql1)

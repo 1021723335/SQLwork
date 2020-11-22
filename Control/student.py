@@ -62,11 +62,8 @@ class StudentManager(object):
             result = self.studentList
             return result
         else:
-            keyList = keyList.split()
-
-            for i in keyList:
-                msg = sql.student_select(searchBy,i)
-                result = result + self.tostudent(msg)
+            msg = sql.student_select(searchBy,keyList)
+            result = result + self.tostudent(msg)
             #print(result)
             return result
 

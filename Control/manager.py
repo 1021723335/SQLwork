@@ -58,12 +58,8 @@ class MManager(object):
             result = self.MList
             return result
         else:
-            keyList = keyList.split()
-
-            for i in keyList:
-                msg = sql.manager_select(searchBy, i)
-                result = result + self.tomanager(msg)
-            # print(result)
+            msg = sql.manager_select(searchBy, keyList)
+            result = result + self.tomanager(msg)
             return result
 
     def tomanager(self,msg):
