@@ -59,7 +59,7 @@ class StudentManager(object):
         #print(searchBy)
         result = []
         if not keyList:
-            result = self.studentList
+            result = self.load()
             return result
         else:
             msg = sql.student_select(searchBy,keyList)
@@ -104,7 +104,7 @@ class StudentManager(object):
 
         #print(self.studentSID)
         #print(self.studentList)
-        return result
+        return studentList
 
 class Student(object):
     """学生类, 用于存储学生基本信息"""
