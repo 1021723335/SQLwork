@@ -288,7 +288,7 @@ def sushe_edit(sushe):
     #更改宿舍
     db = open()
     cursor = db.cursor()
-    sql1 = """update s_table set L_n = {},S_n = {},C_n = {},Location = {} where Lno = {} and Sno = {} """.format(sushe.L_n,sushe.C_n,sushe.K_n,sushe.Location,sushe.Lno,sushe.Sno)
+    sql1 = """update s_table set L_n = {},C_n = {},K_n = {},Location = "{}" where Lno = {} and Sno = {} """.format(sushe.L_n,sushe.C_n,sushe.K_n,sushe.Location,sushe.Lno,sushe.Sno)
     try:
         # 执行SQL语句
         cursor.execute(sql1)

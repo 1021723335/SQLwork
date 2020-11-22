@@ -51,7 +51,7 @@ class SBox(object):
     def applyToSushe(self, sushe):
         sushe.Lno = self.LnoEdit.text()
         sushe.Sno = self.SnoEdit.text()
-        sushe.L_n = self.L_nEdit().text()
+        sushe.L_n = self.L_nEdit.text()
         sushe.C_n = self.C_nEdit.text()
         sushe.K_n = self.K_nEdit.text()
         sushe.Location = self.LocationEdit.text()

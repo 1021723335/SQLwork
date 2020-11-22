@@ -4,6 +4,7 @@ import public
 from PyQt5 import QtWidgets
 from Control.student import StudentManager
 from Control.manager import MManager
+from Control.sushe import SusheManager
 
 if __name__ == "__main__":
     argv = sys.argv
@@ -13,6 +14,7 @@ if __name__ == "__main__":
 
     public.studentManager = StudentManager()
     public.suguangManager = MManager()
+    public.susheManager = SusheManager()
 
     public.mainDialog = MainWindow()
     public.mainDialog.show()

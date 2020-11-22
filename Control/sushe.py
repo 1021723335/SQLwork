@@ -1,7 +1,7 @@
 import sql
 
 #宿管属性集
-attributeListM = [
+attributeListS = [
     ("Lno","楼号"),
     ("Sno","宿舍号"),
     ("L_n","入住人数"),
@@ -102,7 +102,7 @@ class SusheManager(object):
 
 class Sushe(object):
     """宿舍类, 用于存储宿管基本信息"""
-    def __init__(self, Lno="", Sno="", L_n=0, C_n="", K_n="",Location=""):
+    def __init__(self, Lno="", Sno="", L_n="", C_n="", K_n="",Location=""):
         self.Lno = Lno
         self.Sno = Sno
         self.L_n = L_n
@@ -126,7 +126,7 @@ class Sushe(object):
     def checkInfo(self,new=False):
         '''检查自身信息是否完整合法'''
         # 空值检测
-        for attr, text in attributeListM:
+        for attr, text in attributeListS:
             if not getattr(self, attr):
                 return (False, "%s不能为空" % text)
         # 重复性检测
