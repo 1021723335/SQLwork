@@ -350,7 +350,7 @@ def sushe_select(seachby,keyList):
     cursor = db.cursor()
     #print(seachby)
     #print(keyList)
-    sql1 = "select * from s_table where {} = '{}' ".format(seachby,keyList)
+    sql1 = "select * from s_table where {} REGEXP '{}' ".format(seachby,keyList)
     try:
         # 执行SQL语句
         cursor.execute(sql1)

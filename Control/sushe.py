@@ -56,14 +56,11 @@ class SusheManager(object):
         #print(searchBy)
         result = []
         if not keyList:
-            result = self.MList
+            result = self.SList
             return result
         else:
-            keyList = keyList.split()
-
-            for i in keyList:
-                msg = sql.sushe_select(searchBy, i)
-                result = result + self.tosushe(msg)
+            msg = sql.sushe_select(searchBy, keyList)
+            result = result + self.tosushe(msg)
             # print(result)
             return result
 
