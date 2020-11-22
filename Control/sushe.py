@@ -70,7 +70,7 @@ class SusheManager(object):
     def tosushe(self,msg):
         result = []
         for i in range(len(msg)):
-            # 创建每一个数据的manager对象
+            # 创建每一个数据的sushe对象
             m = msg[i]
             # print(s)
             sushe = Sushe()
@@ -87,17 +87,17 @@ class SusheManager(object):
         SList = []
         SLSID = {}
         try:
-            msg = sql.Load("m_table")
+            msg = sql.Load("s_table")
             result = self.tosushe(msg)
-            for manager in result:
-                MList.append(manager)
-                MMID[manager.MID] = manager
+            for sushe in result:
+                SList.append(sushe)
+                SLSID[sushe.Lno+sushe.Sno] = sushe
             result = True
         except:
             result = False
         finally:
-            self.MList = MList
-            self.MMID = MMID
+            self.SList = SList
+            self.SLSID = SLSID
 
         #print(self.MMID)
         #print(self.MList)
