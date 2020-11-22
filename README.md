@@ -20,6 +20,7 @@
 | sql.py    | 封装数据库操作                        |
 | UI        | UI界面（用Qtdesigner设计，PYUIC生成） |
 | Ccontrol  | 学生、宿舍、舍管（类和管理类的封装）  |
+|sushe.sql   | 建立数据库的语句                     |
 
   #### 平台
 
