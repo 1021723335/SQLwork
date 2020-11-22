@@ -55,7 +55,7 @@ class MManager(object):
         #print(searchBy)
         result = []
         if not keyList:
-            result = self.MList
+            result = self.load()
             return result
         else:
             msg = sql.manager_select(searchBy, keyList)
@@ -95,7 +95,7 @@ class MManager(object):
 
         #print(self.MMID)
         #print(self.MList)
-        return result
+        return MList
 
 class Manager(object):
     """宿管类, 用于存储宿管基本信息"""

@@ -56,7 +56,7 @@ class SusheManager(object):
         #print(searchBy)
         result = []
         if not keyList:
-            result = self.SList
+            result = self.load()
             return result
         else:
             msg = sql.sushe_select(searchBy, keyList)
@@ -98,7 +98,7 @@ class SusheManager(object):
 
         #print(self.MMID)
         #print(self.MList)
-        return result
+        return SList
 
 class Sushe(object):
     """宿舍类, 用于存储宿管基本信息"""
