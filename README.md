@@ -4,11 +4,7 @@
 
 * 这个是数据库课程安排的大作业，然后做的很粗糙没有考虑的太细致。
 
-* 关于界面的设计参考了这个项目的内容（
-
-  [StudentsManager ]: https://github.com/zaevi/StudentsManager
-
-  ）
+* 关于界面的设计参考了这个项目的内容（[StudentsManager ]: https://github.com/zaevi/StudentsManager）
 
 * 学生宿舍管理系统，使用PyQt5编写，用了pymysql操作mysql库
 
