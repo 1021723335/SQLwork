@@ -111,7 +111,7 @@
         </rect>
        </property>
        <property name="statusTip">
-        <string>快速检索信息</string>
+        <string>快速检索信息，多个信息用“|&quot;隔开</string>
        </property>
       </widget>
       <widget class="QComboBox" name="SearchBox_1">
@@ -586,7 +586,7 @@ background : rgb(237, 255, 254);
         </rect>
        </property>
        <property name="statusTip">
-        <string>快速检索信息</string>
+        <string>快速检索信息，多个信息用“|”隔开</string>
        </property>
       </widget>
       <widget class="QComboBox" name="SearchBox_2">
@@ -1371,7 +1371,7 @@ background : rgb(237, 255, 254);
         </rect>
        </property>
        <property name="statusTip">
-        <string>快速检索信息</string>
+        <string>快速检索信息，多个信息用“|&quot;隔开</string>
        </property>
       </widget>
       <widget class="QComboBox" name="SearchBox_3">
