@@ -319,3 +319,50 @@ def sushe_delete(sushe):
 
     # 关闭数据库连接
     db.close()
+
+def sushe_multiselect(seachby,keyList):
+    #宿舍多属性查询
+    db = open()
+    cursor = db.cursor()
+    sql1 = "select * from s_table "
+    for i in range(len(seachby)):
+        if i == 0:
+            sql1 = sql1 + "where {} = '{}' ".format(seachby[i],keyList[i])
+        else:
+            sql1 = sql1 + "and {} = '{}' ".format(seachby[i], keyList[i])
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        results = ()
+        db.rollback()  # 事务回滚
+        print('查询宿舍失败', e)
+    else:
+        results = cursor.fetchall()
+        print('查宿舍管成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+    return results
+
+def sushe_select(seachby,keyList):
+    #宿舍单属性查询
+    db = open()
+    cursor = db.cursor()
+    #print(seachby)
+    #print(keyList)
+    sql1 = "select * from s_table where {} = '{}' ".format(seachby,keyList)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql1)
+    except Exception as e:
+        results = ()
+        db.rollback()  # 事务回滚
+        print('查询宿舍失败', e)
+    else:
+        results = cursor.fetchall()
+        print('查询宿舍成功', cursor.rowcount)
+
+    # 关闭数据库连接
+    db.close()
+    return results

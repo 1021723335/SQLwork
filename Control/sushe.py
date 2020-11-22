@@ -13,18 +13,18 @@ class SusheManager(object):
     """宿舍管理类, 单例"""
 
     def __init__(self):
-        # 用于存储所有宿管对象
-        self.SusheList = []
-        # 工号 -> 宿管对象
-        self.SusheID = {}
+        # 用于存储所有宿舍对象
+        self.SList = []
+        # 楼号+宿舍号 -> 宿舍对象
+        self.SLSID = {}
 
         self.load()
 
         self.emptySushe = Sushe()
 
     def add(self, sushe):
-        self.SusheList.append(sushe)
-        self.SusheList[sushe.Lno+sushe.Sno] = sushe
+        self.SList.append(sushe)
+        self.SLSID[sushe.Lno+sushe.Sno] = sushe
         sql.sushe_add(sushe)
 
     def edit(self, sushe):
@@ -32,8 +32,8 @@ class SusheManager(object):
         return True
 
     def delete(self, sushe):
-        self.SusheID.pop(sushe.Lno+sushe.Sno)
-        self.SusheList.remove(sushe)
+        self.SLSID.pop(sushe.Lno+sushe.Sno)
+        self.SList.remove(sushe)
         sql.sushe_delete(sushe)
         return True
 
@@ -46,10 +46,10 @@ class SusheManager(object):
             if keytext:
                 searchBy.append(searchby)
                 keyText.append(keytext)
-        msg = sql.manager_multiselect(searchBy, keyText)
+        msg = sql.sushe_multiselect(searchBy, keyText)
         #print(searchBy)
         #print(keyText)
-        result = self.tomanager(msg)
+        result = self.tosushe(msg)
         return result
 
     def search(self, searchBy, keyList):
@@ -62,32 +62,33 @@ class SusheManager(object):
             keyList = keyList.split()
 
             for i in keyList:
-                msg = sql.manager_select(searchBy, i)
-                result = result + self.tomanager(msg)
+                msg = sql.sushe_select(searchBy, i)
+                result = result + self.tosushe(msg)
             # print(result)
             return result
 
-    def tomanager(self,msg):
+    def tosushe(self,msg):
         result = []
         for i in range(len(msg)):
             # 创建每一个数据的manager对象
             m = msg[i]
             # print(s)
-            manager = Manager()
-            manager.MID = m[0]
-            manager.Mname = m[1]
-            manager.Msex = m[2]
-            manager.Mage = m[3]
-            manager.Mphone = m[4]
-            result.append(manager)
+            sushe = Sushe()
+            sushe.Lno = m[0]
+            sushe.Sno = m[1]
+            sushe.L_n = m[2]
+            sushe.C_n = m[3]
+            sushe.K_n = m[4]
+            sushe.Location = m[5]
+            result.append(sushe)
         return result
 
     def load(self):
-        MList = []
-        MMID = {}
+        SList = []
+        SLSID = {}
         try:
             msg = sql.Load("m_table")
-            result = self.tomanager(msg)
+            result = self.tosushe(msg)
             for manager in result:
                 MList.append(manager)
                 MMID[manager.MID] = manager
