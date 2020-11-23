@@ -20,7 +20,7 @@
 | sql.py    | 封装数据库操作                        |
 | UI        | UI界面（用Qtdesigner设计，PYUIC生成） |
 | Ccontrol  | 学生、宿舍、舍管（类和管理类的封装）  |
-|sushe.sql   | 建立数据库的语句                     |
+| sushe.sql | 建立数据库的语句                      |
 
   #### 平台
 
@@ -30,6 +30,46 @@
 * pymysql
 * mysql
 
-  
+### 系统主要功能界面介绍
 
-  
+* 学生管理界面：
+
+![img](https://i.loli.net/2020/11/23/YzcZmvU4yVsFNha.jpg) 
+
+​                               修改界面：	                                       新建界面：					                       多属性搜索界面：
+
+![img](https://i.loli.net/2020/11/23/snaClodGi1fTNcw.png)
+
+单属性搜索：
+
+![img](https://i.loli.net/2020/11/23/qkh1ZaAxlRV8GOu.jpg) 
+
+
+
+* 宿舍管理界面：
+
+![img](https://i.loli.net/2020/11/23/Qg7NmM2v1WtdEYh.jpg) 
+
+​                                       修改界面：	                               多属性搜索界面：	            	  新建界面：		
+
+![img](https://i.loli.net/2020/11/23/UiCqPQE2WNaeSHp.png)
+
+单属性搜索：
+
+![img](https://i.loli.net/2020/11/23/GiWgbmIdvafxjRC.jpg) 
+
+
+
+* 宿管管理界面：
+
+![img](https://i.loli.net/2020/11/23/sKT1QGgNoM8i9jd.jpg) 
+
+
+
+修改界面：                                            高级搜索：                                          添加界面：
+
+![img](https://i.loli.net/2020/11/23/34EGqU615Klo9sW.png) 
+
+单属性搜索：
+
+![img](https://i.loli.net/2020/11/23/uDcO3veJMTN7Gsf.jpg) 
