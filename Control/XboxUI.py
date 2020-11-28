@@ -92,7 +92,7 @@ class EditBox(StudentBox):
 
         self.SIDEdit.setText(student.SID)
         self.SnameEdit.setText(student.Sname)
-        self.setSex(str(student.Ssex))
+        self.setSex(student.Ssex)
         self.LnoEdit.setText(student.Lno)
         self.SnoEdit.setText(student.Sno)
         self.MnameEdit.setText(student.Mname)
