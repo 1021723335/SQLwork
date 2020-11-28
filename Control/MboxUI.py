@@ -87,7 +87,7 @@ class EditBox(MBox):
 
         self.MIDEdit.setText(manager.MID)
         self.MnameEdit.setText(manager.Mname)
-        self.setSex(str(manager.Msex))
+        self.setSex(manager.Msex)
         self.MageEdit.setText(str(manager.Mage))
         self.MphoneEdit.setText(manager.Mphone)
 
